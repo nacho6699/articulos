@@ -1,0 +1,57 @@
+<head>
+  <title>Articulos</title>
+
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+
+  {{> appDumpUI}}
+  {{> appDumpUI advanced=true}}
+
+  {{> loginButtons}}
+  <h1>Insertar Articulos</h1>
+  {{#animate type="wobble" delay="200"}}
+  <form id="form">
+    TITULO:<input type="text" name="txt_titulo" value=""><br>
+    CONTENIDO:<input type="text" name="txt_contenido" value=""><br>
+    <button type="submit" name="button">INSERTAR</button>
+  </form>
+  {{/animate}}
+  {{#transition in = "bounceIn" out = "bounceOut"}}
+      {{> Articulos}}
+    {{/transition}} 
+</body>
+
+<template name="Articulos">
+  {{#animate tipo = "rubberBand" delay = "200"}}
+  <h2>Mis Articulos</h2>
+  {{/animate}}
+  <article>
+{{#transition wrap = "true" in = "bounceIn" out = "bounceOutLeft"}}
+    {{#each articulos}}
+      <strong>{{titulo}}</strong>
+      <button type="button" name="button" id="eliminar">Eliminar</button>
+      <p> {{contenido}}</p>
+      <p>
+        <form id="form_coments">
+          <input type="text" name="txt_comentario" value="">
+          <button type="submit" name="button">Comentar</button>
+        </form>
+      </p>
+      <p>
+        {{#transition wrap = "true" in = "bounceIn" out = "bounceOutLeft"}}
+        {{#each coments}}
+        <i>
+          {{#each usuarios}}
+            {{_id}}
+          {{/each}}
+        </i>
+          <h5>{{texto}}</h5>
+
+        {{/each}}
+        {{/transition}}
+      </p>
+    {{/each}}
+{{/transition}}
+  </article>
+</template>
